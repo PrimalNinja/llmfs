@@ -1,0 +1,125 @@
+{
+	// LLMFS folder watcher - configuration (sits beside llmfs.exe)
+	//
+	// Save a short text file into a watched folder: its content is the request.
+	// A folder named after the file appears beside it holding the results.
+	//   name.busy   being made (holds what that file was asked to be)
+	//   name        finished
+	//   name.error  failed (holds the reason)
+
+	"confirm": true,			// false = never ask before running a job
+	"planner": "ollama",		// the service that turns a request into the list of files to make
+
+	"maxrequestsize": 2048,		// bytes: a new file is a request only if it is plain text no bigger than this
+	"maxfiles": 100,			// the most files one request may make
+	"burst": 10,				// more new request files than this appearing at once: ask before running them
+	"parallel": 2,				// files being made at the same time
+	"timeout": 120,				// seconds per LLM call
+	"rescan": 30,				// seconds between full rescans of the watched folders
+
+	// same settings as the CyborgShell csconfig, plus:
+	//   confirmabove   ask before a job makes more than this many files on this service (0 = never ask)
+	// a service with no endpoint or no model is 'not configured'
+	"services": {
+		"ollama": {
+			"apikey": "",
+			"endpoint": "http://localhost:11434/v1/chat/completions",
+			"flavour": "chatgpt",
+			"maxtokens": "8000",
+			"model": "llama3.2:latest",
+			"temperature": "0.7",
+			"proxy": "",
+			"jsonbearer": "N",
+			"confirmabove": 0
+		},
+		"openai": {
+			"apikey": "",
+			"endpoint": "https://api.openai.com/v1/chat/completions",
+			"flavour": "chatgpt",
+			"maxtokens": "8000",
+			"model": "gpt-4o-mini",
+			"temperature": "0.7",
+			"proxy": "",
+			"jsonbearer": "N",
+			"confirmabove": 5
+		},
+		"claude": {
+			"apikey": "",
+			"endpoint": "https://api.anthropic.com/v1/messages",
+			"flavour": "claude",
+			"maxtokens": "8000",
+			"model": "claude-3-5-sonnet-20241022",
+			"temperature": "0.7",
+			"proxy": "",
+			"jsonbearer": "N",
+			"confirmabove": 5
+		},
+		"gemini": {
+			"apikey": "",
+			"endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+			"flavour": "gemini",
+			"maxtokens": "8000",
+			"model": "gemini-1.5-flash",
+			"temperature": "0.9",
+			"proxy": "",
+			"jsonbearer": "N",
+			"confirmabove": 5
+		},
+		// ---- image services ----
+		// "flavour" says which provider's API is spoken:
+		//   openai-image      POST <endpoint> with {"model","prompt"} - OpenAI, and anything that copies its images API
+		//   gemini-image      POST <endpoint> (the model is part of the endpoint) - Google
+		//   stability-image   POST <endpoint> as a form; the endpoint picks core, ultra or sd3 - Stability AI
+		// "options" are passed straight through to the provider (size, quality, aspect ratio and so on):
+		// what is allowed there is whatever that provider and model accept.
+		// The model names below are examples - check the provider's current list.
+		"openai-image": {
+			"apikey": "",
+			"endpoint": "https://api.openai.com/v1/images/generations",
+			"flavour": "openai-image",
+			"model": "gpt-image-1",
+			"options": { "size": "1024x1024" },
+			"confirmabove": 1
+		},
+		"gemini-image": {
+			"apikey": "",
+			"endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent",
+			"flavour": "gemini-image",
+			"model": "gemini-2.5-flash-image",
+			"options": { },
+			"confirmabove": 1
+		},
+		"stability-image": {
+			"apikey": "",
+			"endpoint": "https://api.stability.ai/v2beta/stable-image/generate/core",
+			"flavour": "stability-image",
+			"model": "",
+			"options": { "aspect_ratio": "1:1" },
+			"confirmabove": 1
+		},
+		"ollama-image": {
+			"apikey": "",
+			"endpoint": "http://localhost:11434/v1/images/generations",
+			"flavour": "openai-image",
+			"model": "x/z-image-turbo",
+			"options": { },
+			"confirmabove": 0
+		}
+	},
+
+	// which service makes which kind of file; "*" is everything not listed
+	"filetypes": {
+		".jpg": "openai-image",
+		".jpeg": "openai-image",
+		".png": "openai-image",
+		".gif": "openai-image",
+		".webp": "openai-image",
+		"*": "ollama"
+	},
+
+	// the folders to watch (their subfolders are watched too)
+	// a folder can carry its own "filetypes" to override the ones above
+	"folders": [
+		{ "path": "C:\\LLMFS" }
+	]
+}

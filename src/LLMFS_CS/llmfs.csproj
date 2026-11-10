@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+	  <OutputType>Exe</OutputType>
+	  <TargetFramework>net8.0</TargetFramework>
+	  <AssemblyName>llmfs</AssemblyName>
+	  <RootNamespace>CyborgUnicorn.LLMFS</RootNamespace>
+	  <Nullable>disable</Nullable>
+	  <ImplicitUsings>disable</ImplicitUsings>
+	  <InvariantGlobalization>true</InvariantGlobalization>
+	  <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	  <SelfContained>true</SelfContained>
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	  <PublishReadyToRun>false</PublishReadyToRun>
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<!-- the config sits beside the exe so it can be edited; it is not packed into the single file -->
+	<ItemGroup>
+	  <None Update="llmfs-config.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+	</ItemGroup>
+
+</Project>

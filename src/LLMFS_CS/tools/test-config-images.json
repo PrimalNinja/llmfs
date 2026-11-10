@@ -1,0 +1,13 @@
+{
+  "confirm": false, "planner": "mock", "parallel": 3, "rescan": 3,
+  "services": {
+    "mock":  { "endpoint": "http://127.0.0.1:8911/openai", "model": "m", "flavour": "chatgpt", "apikey": "K" },
+    "oai":   { "endpoint": "http://127.0.0.1:8911/img.php/oai", "model": "gpt-image-x", "flavour": "openai-image", "apikey": "OK", "options": { "size": "1024x1024", "n": 1 } },
+    "oaiurl":{ "endpoint": "http://127.0.0.1:8911/img.php/oai-url", "model": "m", "flavour": "image", "apikey": "OK" },
+    "oaibad":{ "endpoint": "http://127.0.0.1:8911/img.php/oai-bad", "model": "m", "flavour": "openai-image", "apikey": "" },
+    "gem":   { "endpoint": "http://127.0.0.1:8911/img.php/gem", "model": "g", "flavour": "gemini-image", "apikey": "GK", "options": { "imageConfig": { "aspectRatio": "16:9" } } },
+    "stab":  { "endpoint": "http://127.0.0.1:8911/img.php/stab", "model": "", "flavour": "stability-image", "apikey": "SK", "options": { "aspect_ratio": "1:1" } }
+  },
+  "filetypes": { ".png": "oai", ".jpg": "gem", ".webp": "stab", ".gif": "oaiurl", ".bmp": "oaibad", ".txt": "gem", "*": "mock" },
+  "folders": [ { "path": "testroot-images" } ]
+}

@@ -1,0 +1,10 @@
+{
+  "confirm": true, "planner": "mock", "burst": 10, "parallel": 2, "rescan": 3,
+  "services": {
+    "mock":   { "endpoint": "http://127.0.0.1:8911/openai", "model": "m", "flavour": "chatgpt", "apikey": "K", "maxtokens": "8000", "confirmabove": 2 },
+    "mockc":  { "endpoint": "http://127.0.0.1:8911/claude", "model": "m", "flavour": "claude", "apikey": "K", "confirmabove": 0 },
+    "images": { "endpoint": "", "model": "", "flavour": "image", "confirmabove": 1 }
+  },
+  "filetypes": { ".jpg": "images", ".js": "mockc", "*": "mock" },
+  "folders": [ { "path": "testroot" } ]
+}
