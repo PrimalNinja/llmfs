@@ -11,7 +11,7 @@ There are three versions here. They share the idea, not the code.
 | `php/` | PHP 5.4+ | The same thing standalone: an engine plus a commandline, in a browser (no JavaScript) or a terminal. |
 | `cs/` | C# / .NET 8 | A folder watcher. Save a text file into a watched folder and a folder of results appears beside it. |
 
-The design, the rules and the reasons for them are in [LLMFS.md](LLMFS.md).
+The design, the rules and the reasons for them are in [docs/LLMFS.md](docs/LLMFS.md).
 
 ## Status
 
