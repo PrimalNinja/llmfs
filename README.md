@@ -211,6 +211,6 @@ Each version has a `tools` folder with the stand-in LLM it was tested against an
 
 ## Licence
 
-MIT. See [LICENSE.md](LICENSE.md).
+MIT. See [LICENSE](LICENSE).
 
 (c) 2026 Cyborg Unicorn Pty Ltd
