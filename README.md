@@ -15,9 +15,7 @@ The design, the rules and the reasons for them are in [docs/LLMFS.md](docs/LLMFS
 
 ## Status
 
-Proof of concept. All three versions have been run against a stand-in LLM that returns canned replies.
-None of them has been proven against every provider listed in the configs, and the model names in the
-sample configs are examples: check your provider's current list.
+Proof of concept. 
 
 ---
 
